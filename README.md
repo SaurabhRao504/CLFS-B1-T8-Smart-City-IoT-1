@@ -21,3 +21,4 @@ Components used in this part of the project are:
 
 ### Phase 1:
 The Objective of Phase 1 is to create a fare calculation system. 2 IR Sensors are used to detect two parking lots. When a vehicle enters a lot Entry time will be logged and when a vehicle leaves the lot the IR Sensor value becomes '0' and exit time is calculated. Based on the number of hours parked fare will be calculated.
+* For the Fare Calculation Python Script [click here](https://github.com/prakash-josyula/CLFS-B1-T8-Smart-City-IoT/blob/e16a3966d3bf54dadce12e002332a589959934dc/Fare_Calculation.py)
