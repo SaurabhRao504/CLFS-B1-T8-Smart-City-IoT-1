@@ -18,22 +18,37 @@ parking_time2 = 0
 
 def fare_calculation(IR1,IR2):
     global parking_time1, parking_time2
+
     if IR1 == 0:
-        total_time = time.time() - parking_time1
-    if IR2 == 0:
-        total_time = time.time() - parking_time2
+        total_time1 = time.time() - parking_time1
+
+        if total_time1 < 3600:
+            hours1 = 1
+        else:
+            hours1 = int(total_time1/3600)+1
+
+        rate1 = hours1 * 30.00
+
+        ret1 = "Vehicle Exited 1!\n" \
+              "Your Total for " + "{:.2f}".format(hours1) + " hours is Rs" + "{:.2f}".format(rate1)
+
+        return ret1
         
-    if total_time < 3600:
-        hours = 1
-    else:
-        hours = int(total_time / 3600)+1
 
-   
-    rate = hours * 30.00
+    if IR2 == 0:
+        total_time2 = time.time() - parking_time2
 
-    ret = "Vehicle Exited!\n Your Total for " + "{:.2f}".format(hours) + " hours is " + "{:.2f} " + "Rupees".format(rate)
+        if total_time2 < 3600:
+            hours2 = 1
+        else:
+            hours2 = int(total_time2/3600)+1
 
-    print(ret)
+        rate2 = hours2 * 30.00
+
+        ret2 = "Vehicle Exited 2!\n" \
+              "Your Total for " + "{:.2f}".format(hours2) + " hours is Rs." + "{:.2f}".format(rate2)
+
+        return ret2
 
 
 def command_handler(command,IR1,IR2):
@@ -41,17 +56,19 @@ def command_handler(command,IR1,IR2):
     
     if command == "P":
         if IR1 == 1:
-            print("Time Entered: " + str(time.strftime('%I:%M %p',time.localtime(parking_time1))))
+            parking_time1 = time.time()
+            print("Time Entered: " + str(time.strftime('%I:%M %p', time.localtime(parking_time1))))
+
         if IR2 == 1:
-            str("Time Entered: " + time.strftime('%I:%M %p',time.localtime(parking_time2)))
+            parking_time2 = time.time()
+            print("Time Entered: " + str(time.strftime('%I:%M %p', time.localtime(parking_time2))))
     
     elif command == "E":
-        fare_calculation(IR1,IR2)
+        print(fare_calculation(IR1,IR2))
 
     elif command == "Q":
         return
 
-    
     else:
         print("Error: Invalid Command")
         time.sleep(1)
@@ -69,23 +86,23 @@ def main():
         
         if (IR1 == 1 and flag1 == 1):
             command = "P"
-            print("Parking Started 1")
+            print("Vehicle Parked in Lot 1")
             flag1 = 0
-            command_handler(command)
+            command_handler(command,IR1,IR2)
         elif (IR1 == 0 and flag1 == 0):
             command = "E"
-            print("Exiting the Lot 1")
+            print("Vehicle Exiting Lot 1")
             flag1 = 1
-            command_handler(command)
+            command_handler(command,IR1,IR2)
 
         if (IR2 == 1 and flag2 == 1):
             command = "P"
-            print("Parking Started 2")
+            print("Vehicle Parked in Lot 2")
             flag2 = 0
-            command_handler(command)
+            command_handler(command,IR1,IR2)
         elif (IR2 == 0 and flag2 == 0):
             command = "E"
-            print("Exiting the Lot 2")
+            print("Vehicle Exiting Lot 2")
             flag2 = 1
             command_handler(command,IR1,IR2)
 
