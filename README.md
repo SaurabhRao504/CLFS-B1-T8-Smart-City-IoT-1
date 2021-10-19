@@ -19,5 +19,5 @@ Components used in this part of the project are:
 3. RFID Reader and Tag
 4. LCD Display
 
-###Phase 1:
+### Phase 1:
 The Objective of Phase 1 is to create a fare calculation system. 2 IR Sensors are used to detect two parking lots. When a vehicle enters a lot Entry time will be logged and when a vehicle leaves the lot the IR Sensor value becomes '0' and exit time is calculated. Based on the number of hours parked fare will be calculated.
